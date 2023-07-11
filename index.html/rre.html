@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Windows RRE</title>
+</head>
+
+<body>
+    <br />
+    <br />
+    <br />
+    <div id="game_div" oncontextmenu="return false" onclick="hide_menus()">
+        <audio id="start_sound" src="start_sound.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;"></audio>
+        <audio id="jump_sound_2" src="jump_sound_2.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;"></audio>
+        <audio id="jump_sound" src="jumpscare_sound.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;"></audio>
+        <audio id="background_music_2" src="background_music_2.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;" loop="true"></audio>
+        <audio id="download_sound" src="download_sound.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;"></audio>
+        <audio id="mini_jump_sound" src="mini_jump_sound.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;"></audio>
+        <audio id="txt_sound" src="txt_sound.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;"></audio>
+        <audio id="bug_sound" src="bug_sound.mp3" autobuffer preload="auto"
+            style="visibility:hidden;width:0px;height:0px;z-index:-1;"></audio>
+
+
+        <div id="intro">
+            <div class="some_stuff" id="intro_1" onkeypress="start_game(event)">
+                <img src="windows_EIO.png" />
+                <p id="text_1_1">Press Any Key to Start Game</p>
+            </div>
+            <div class="some_stuff_2" id="intro_3">
+                <p>Meir Games Presents</p>
+            </div>
+            <div class="some_stuff_2" id="intro_4">
+                <p>A Meir Games Production</p>
+            </div>
+            <div class="some_stuff_2" id="intro_5">
+                <p style="color: red">Windows RRE</p>
+            </div>
+            <div class="some_stuff_3" id="intro_2">
+                <img src="headphones_EIO.png" />
+                <p>Best Played with Sound</p>
+            </div>
+        </div>
+
+        <div id="cache">
+            <img src="end_1.png" />
+            <img src="end_2.png" />
+            <img src="end_3.png" />
+            <img src="end_4.png" />
+            <img src="end_5.png" />
+        </div>
+        <div id="the_end" style="display: none;">
+            <div id="end_1"></div>
+            <div class="the_end_2" id="end_2">The End</div>
+            <div class="the_end_2" id="end_3">Thank You For Playing</div>
+        </div>
+
+        <div class="para" id="desktop">
+            <br />
+            <div id="icons_1">
+                <!-- Settings -->
+                <div class="icon" id="settings" onclick="open_settings()">
+                    <span class="icon_text" style="margin-left: 0px;">Settings</span>
+                    <div class="icon_pic" id="background_settings">
+                        <img id="2" class="locked_pic" src="Locked_EIO.png" />
+                    </div>
+                </div>
+                <!-- SMS -->
+                <div class="icon" id="sms" onclick="open_sms(), txt_clear()">
+                    <span class="icon_text" style="margin-left: 0px;">Messages</span>
+                    <div class="icon_pic" id="background_sms">
+                        <img id="alert_pic_2" src="alert_EIO.png" />
+                    </div>
+                </div>
+                <!-- Trash -->
+                <div class="icon" id="trash" onclick="open_trash()">
+                    <span class="icon_text" style="margin-left: 15px;">Trash</span>
+                    <div class="icon_pic" id="background_trash">
+                        <img id="1" class="locked_pic" src="Locked_EIO.png" />
+                    </div>
+                </div>
+                <!-- Internet -->
+                <div class="icon" id="internet" onclick="open_internet()">
+                    <span class="icon_text">Internet</span>
+                    <div class="icon_pic" id="background_internet">
+                        <img id="0" class="locked_pic" src="Locked_EIO.png" />
+                    </div>
+                </div>
+                <!-- Files -->
+                <div class="icon" id="files" onclick="open_files()">
+                    <span class="icon_text" style="margin-left: 18px;">Files</span>
+                    <div class="icon_pic" id="background_files">
+                        <img id="3" class="locked_pic" src="Locked_EIO.png" />
+                    </div>
+                </div>
+                <!-- Mail -->
+                <div class="icon" id="mail" onclick="open_mail(); no_message()">
+                    <span class="icon_text" style="margin-left: 15px;">Mail</span>
+                    <div class="icon_pic" id="background_mail">
+                        <img id="alert_pic" src="alert_EIO.png" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="bottom">
+                <br />
+                <div id="logo" onmouseover="right_click_7()">
+                </div>
+                <div id="info_stuff">
+                    <div id="wifi">
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu_7" class="windows_menu" style="position: relative; display: none; left: 0px; top: -150px">
+                <p onclick="toggle_sound()" id="sound_name">SOUND OFF</p>
+                <p onclick="restart_game()">RESTART GAME</p>
+            </div>
+
+        </div>
+
+
+
+        <!-- SETTINGS -->
+        <div class="para" id="settings_program">
+            <br />
+            <div class="closer_1" onclick="close_program()">&times;</div>
+            <h1 style="color: white; margin-left: 15px; font-size: 36px">Settings</h1>
+            <h3 style="color: white; margin-left: 20px; font-size: 26px">Wifi</h3>
+            <div id="wifi_toggle" style="display: none;">
+                <label id="switch_move" class="switch">
+                    <input id="wifi_input" type="checkbox" onclick="toggle_wifi()" autocomplete="off">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <input id="wifi_password" type="password" placeholder="Network Password" onkeypress="password_2()" />
+        </div>
+
+
+
+        <!-- TRASH -->
+        <div class="para" id="trash_program">
+            <br />
+            <div class="closer" onclick="close_program()">&times;</div>
+            <h1 style="margin-left: 15px;">TRASH <span style="font-size: 12px;">Reinstalled files will go to your files
+                    folder. Right Click to Reinstall</span></h1>
+            <div id="trash_list">
+                <div class="file_type" oncontextmenu="right_click_2(event);" id="1_2">
+                    <img class="file_pic" src="encrypt_EIO.png" />
+                    <div class="file_text">WindowsEncryption.hx</div>
+                </div>
+                <div id="5_2" class="file_type" onclick="open_text_doc()" oncontextmenu="right_click_5(event)"
+                    style="display: none;">
+                    <img class="file_pic" src="txt_EIO.png" />
+                    <div class="file_text">RRE.txt</div>
+                </div>
+                <div id="loading2" style="display: none; text-align: center;">
+                    <img id="loading_2" src="loading_EIO.gif" style="height: 250px; width: 250px; margin-top: 75px;" />
+                </div>
+
+                <div id="menu_2" class="context_menu" style="display: none">
+                    <p onclick="reinstall()">Reinstall</p>
+                    <p onclick="crash()">Delete</p>
+                </div>
+
+                <div id="menu_5" class="context_menu" style="display: none">
+                    <p onclick="reinstall_2()">Reinstall</p>
+                    <p onclick="crash()">Delete</p>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <!-- INTERNET -->
+        <div class="para" id="internet_program">
+            <br/>
+            <div class="closer" onclick="close_program()">&times;</div>
+            <br/>
+            <h1 id="googley">Googley</h1>
+            <input id="search_bar" autocomplete="off" onkeypress="search(event)" type="text" />
+            <div id="web_page">
+                <div id="13"
+                    style="color: lightgrey; margin-left: 15px; user-select: none; margin-top: 15px; display: block;">
+                    Search a website and hit enter!</div>
+
+
+
+                <div id="loading" style="display: none; text-align: center;">
+                    <img style="height: 250px; width: 250px; margin-top: 75px;" src="loading_EIO.gif" />
+                </div>
+
+
+
+                <div id="google" style="display: none; margin-left: 15px; margin-top: 15px;">
+                    <h2><strong>STOP!</strong></h2>
+                    Why would you use google? GOOGLEY is the better web browser, it can even go to some websites!
+                </div>
+
+                <div id="history" style="display: none; margin-left: 15px; margin-top: 15px; overflow-x: visible">
+                    <div style="background-color: white; float: right; width: 15px; height: 240px; margin-top: -10px;"></div>
+                    <h2>User History:</h2>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">howtoconnecttointernet.url<span>1m</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">googley.docs.com<span>48m</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">googley.com<span>3m</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">namethetoefungus.net<span>5h 33m</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">google.com<span>NO, JUST NO</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">googley.sheets.com<span>25m</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">XXXyouknowhwat.com<span>13h 22m</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    <h6 class="historyOption">googley.forums.com<span>2h 8m</span></h6>
+                    <br/>
+                    <hr class="historyOption"/>
+                    
+                    <style>
+                        .historyOption span{
+                            font-size: 10px;
+                            float: right;
+                            margin-right: 10px;
+                            color: gray;
+                        }
+                        h6.historyOption {
+                            user-select: none;
+                            font-size: 16px;
+                            margin: 14px 10px 0px 0px;
+                        }
+                        h6.historyOption:hover {
+                            background-color: lightblue;
+                        }
+                        hr.historyOption {
+                            margin: -15px 0px;
+                        }
+                    </style>
+                </div>
+
+                <div id="wifiless" style="display: none; margin-left: 15px; margin-top: 15px;">
+                    <strong>Oops! You don't seem to be connected to the internet. You can try:</strong>
+                    <p style="margin-left: 35px;">Turning the computer upside down to prioritize the DNS.</p>
+                    <p style="margin-left: 35px;">Shaking the computer to reinstall the LAN packet distribution system.
+                    </p>
+                    <p style="margin-left: 35px;">Or dunking the computer under water to stabalize IP logistics
+                        configuration.</p>
+                    <p style="margin-left: 35px;">
+                        <strong>----------------------------------------------------------------------------------------------------------------------</strong>
+                    </p>
+                    <p style="margin-left: 35px;">If none of the above work try turning the comupter off and then on
+                        again.</p>
+                </div>
+
+
+                <div id="no_web" style="display: none; margin-left: 15px; margin-top: 15px;">
+                    <h2><strong>ERROR 404</strong></h2>
+                    The website you are trying to go to does not exist.
+                </div>
+
+
+                <!-- -->
+                <div id="microcough">
+                    <br />
+                    <img style="float: left; height: 40px; width: 40px; margin-left: 5px; margin-right: 5px; margin-top: 20px;"
+                        src="windows_EIO.png" />
+                    <h1>How to Use Windows RRE</h1>
+                    <h3 style="margin: 5px 15px;">If you are reading this it means you have decided to live an elevated
+                        life with RRE. We hope you enjoy using our operating system. Below we will discuss some of the
+                        key features RRE provides.</h3>
+                    <ul>
+                        <li style="margin-bottom: 15px;">RRE takes up less space then any other operating system on the
+                            market.</li>
+                        <li style="margin-bottom: 15px;">We provide 24/7 service that has won more than sixty God-Tier
+                            Customer Service Awards (GTCSA) in the past 2 years.</li>
+                        <li style="margin-bottom: 15px;">Simple, sleek, and streamlined design allows for you to use
+                            your computer to its maximum potential.</li>
+                    </ul>
+                    <h4 style="margin: 5px 15px;">The Better OS</h4>
+                    <p style="margin: 10px 20px;">RRE has been ranked as the best Operating System in the world. We
+                        ensure that your computer is completely secured. With some of the most advanced software out
+                        there you can't go wrong with RRE.</p>
+                    <h4 style="margin: 5px 15px;">Understanding the File System</h4>
+                    <p style="margin: 10px 20px;">You can only open certain files. You can also right-click on files for
+                        more options.</p>
+                    <h4 style="margin: 5px 15px;">Understanding Downloads</h4>
+                    <p style="margin: 10px 20px;">All downloads/installed files will appear in your files folder after
+                        they are done.</p>
+                    <h4 style="margin: 10px 15px;">Locations Near You:</h4>
+                    <p style="margin: 10px 20px;">While we can no longer run under a physical location due to forced
+                        closure, we hope that this doesn't disuade you from using our products, though keep in mind that
+                        the use of some of our products has been considered "unsafe," and while
+                        we have seen very few injuries come from the use of RRE we ask you to be careful. We will still
+                        provide support for our customers through irregular updates.</p>
+                </div>
+
+
+
+                <!-- -->
+
+                <div id="microcough_2">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h4>Unfortunately, we can't display all of our product information to the public at the current
+                        time. This web page is only for Microcough administrators and legal purposes.</h4>
+                    <input id="password_1" type="password" placeholder="Password"
+                        style="height: 22px; width: 350px; outline: none;" onkeypress="password_1()" />
+                </div>
+
+                <!-- -->
+
+
+                <div id="microcough_3">
+                    <p style="font-size: 120px;" id="help">HELP</p>
+                </div>
+
+                <div id="goodcookies" style="display: none; text-align: center;">
+                    <h2 style="margin: 15px;">So you realized that the cookies are bugged.</h2>
+                    <h4 style="margin: 15px;">Obviously you can not tell anybody about your discovery as on average
+                        Americans consume about 2 billion cookies yearly. Thank you for cooperating with us.</h4>
+                    <img src="gov_EIO.png" />
+                    <h4 style="margin: 15px;">All the best, US Government</h4>
+                </div>
+
+                <div id="realgov">
+                    <br />
+                    <h2>Yes we are actually the government, for real.</h2>
+                    <p style="margin: 20px;">Access to this website is for perpetrators to learn more about their
+                        crimes. You will need an officials username to access this information.</p>
+                    <br />
+                    <br />
+                    <input id="password_3" type="text" placeholder="Username"
+                        style="height: 22px; width: 350px; outline: none; font-family: 'Ubuntu', sans-serif;"
+                        onkeypress="password_3()" autocomplete="off" />
+                </div>
+
+                <div id="realgov_2">
+                    <br />
+                    <br />
+                    <h1 style="margin: 5px 15px;">Violation of Internet Protection Policy (VIPP)</h1>
+                    <br />
+                    <h3 style="margin: 5px 15px;">Accessing Governent Restricted Websites</h3>
+                    <p style="margin: 5px 15px;">One way to commit a VIPP is to bypass military protections on certain
+                        websites. These websites are not something that you can just come across. Intentionally breaking
+                        security protocalls to learn or acquire information is a direct VIPP
+                        and can leave you with no less than 10 years jail time.</p>
+                    <br />
+                    <h3 style="margin: 5px 15px;">Using Unauthorized Websites</h3>
+                    <p style="margin: 5px 15px;"><strong>You are in violation of: </strong>Certain peoples have
+                        attempted to create unregistered websites in order to bypass US internet security. Accessing
+                        these websites makes you an accomplice which is punishable by <span
+                            style="font-family: 'Shadows Into Light', cursive; color: red; letter-spacing: 3px; font-size: 20px; weight: 5px;"><strong>DEATH</strong></span>.
+                        If you have decided to participate in these activities, stop immediately and turn yourself in
+                        for prosecution.</p>
+                    <br />
+                    <br />
+                    <p
+                        style="font-family: 'Shadows Into Light', cursive; color: red; letter-spacing: 3px; font-size: 20px; weight: 5px; margin: 5px 15px;">
+                        <strong>HELP HELP HELP HELP HELP HELP HELP HELP HELP HELP HELP HELP HELP HELP </strong></p>
+                    <br />
+                </div>
+
+                <div id="govhash" style="display: none; text-align: center;">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <input id="username_2" type="text" placeholder="Username"
+                        style="height: 22px; width: 350px; outline: none;" autocomplete="off" />
+                    <br />
+                    <br />
+                    <br />
+                    <input id="password_5" type="password" placeholder="Password"
+                        style="height: 22px; width: 350px; outline: none;" />
+                    <br />
+                    <br />
+                    <button onclick="password_4()">Enter</button>
+                </div>
+
+                <div id="rre">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <button id="d_rre" onclick="download_2()">DOWNLOAD MICROCOUGH INFO</button>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <!-- Files -->
+        <div class="para" id="files_program">
+            <br />
+            <div class="closer" onclick="close_program()">&times;</div>
+            <h1 style="margin-left: 15px;">FILES <span style="font-size: 12px;">Right click files for more
+                    options.</span></h1>
+            <div id="file_list">
+                <div id="file_close">
+                    <!-- -->
+                    <div class="file_type" onclick="open_text_doc()" oncontextmenu="right_click_1(event)" id="1_1">
+                        <img class="file_pic" src="txt_EIO.png" />
+                        <div class="file_text">TextDoc.txt</div>
+                    </div>
+                    <!-- -->
+                    <div class="file_type" onclick="open_wifi_doc()" oncontextmenu="right_click_3(event)">
+                        <img class="file_pic" src="pdf_EIO.png" />
+                        <div class="file_text">Wifi.pdf</div>
+                    </div>
+                    <!-- -->
+                    <div class="file_type" onclick="open_encrypted_doc()" oncontextmenu="right_click_4(event)">
+                        <img class="file_pic" id="enc" src="no_EIO.png" />
+                        <div id="encrypted" class="file_text">@3hshcBll09l083.grblgrbrg</div>
+                    </div>
+                    <!-- -->
+                    <div class="file_type" onclick="open_calc_doc()" oncontextmenu="right_click_3(event)">
+                        <img class="file_pic" src="calc_EIO.png" />
+                        <div class="file_text">RRECalculator.calc</div>
+                    </div>
+                    <!-- -->
+                    <div class="file_type" oncontextmenu="right_click_3(event);" style="display: none;" id="1_3"
+                        onclick="open_hx_doc();">
+                        <img class="file_pic" src="encrypt_EIO.png" />
+                        <div class="file_text">WindowsEncryption.hx</div>
+                    </div>
+                    <div class="file_type" oncontextmenu="right_click_3(event);" style="display: none;" id="55"
+                        onclick="open_journal_doc()">
+                        <img class="file_pic" src="pdf_EIO.png" />
+                        <div class="file_text">sam's.pdf</div>
+                    </div>
+                    <div class="file_type" oncontextmenu="right_click_6(event);" style="display: none;" id="1_6"
+                        onclick="open_email_doc()">
+                        <img id="1_7" class="file_pic" src="no_EIO.png" />
+                        <div id="encrypted_2" class="file_text">xsh&77&nb:23@3.grblgrbrg</div>
+                    </div>
+                    <div class="file_type" style="display: none;" onclick="open_rre_doc()"
+                        oncontextmenu="right_click_3(event)" id="1_9">
+                        <img class="file_pic" src="info_EIO.png" />
+                        <div class="file_text">RRE.info</div>
+                    </div>
+                    <div class="file_type" style="display: none; background-color: black; cursor: pointer;"
+                        onclick="open_happy_doc()" oncontextmenu="right_click_3(event)" id="happiness">
+                        <div class="file_text"
+                            style="font-family: 'Shadows Into Light', cursive; color: red; font-size: 20px; margin-top: -3px;">
+                            <strong>True Happiness</strong></div>
+                    </div>
+
+                </div>
+
+
+                <div id="text_doc" style="display: none;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <br />
+                    <textarea
+                        style="margin: 10px 15px; width: 890px; height: 350px; border: none; resize: none; outline: none; font-family: 'Ubuntu', sans-serif; font-size: 17px;">This file is here solely for the purpose of allowing you to click on it. This is a text document so you can write in it. Don't you just love Windows RRE!</textarea>
+                </div>
+
+                <div id="journal_doc" style="display: none;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <h3 style="margin-left: 20px;">Project Ressurection Collected Documentation</h3>
+                    <hr />
+                    <h4 style="text-align: center;">RRE Analysis</h4>
+                    <br />
+                    <div style="margin: 5px 12px;">As of the last three months we have noticed that local law
+                        enforcement has been starting to pick up on some of our less "ethical" experiments here. After
+                        performing a small internal investigation, we belive there to be someone working with law
+                        enforcement from inside the company. The investigation has not yet turned up any specific
+                        culprits at the moment.</div>
+                    <div style="margin: 5px 12px;">EDIT: Investigation has determined that none of the employees here
+                        are responsible.</div>
+                    <div style="margin: 5px 12px;">EDIT: We beleive we have found the culprit, pls contact me.</div>
+                    <br />
+                    <hr />
+                    <h4 style="text-align: center;">Security Confrence Between Samuels and Head of Security, Tyler
+                        Lawrence</h4>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>You asked me to conatct you?<span
+                            id="timeStamp"> 08:19</span></div>
+                    <div style="margin: 5px 12px;"><strong>TLawrence: </strong>Yeah... You're not going to like it.<span
+                            id="timeStamp"> 08:21</span></div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>Ok...<span id="timeStamp"> 08:21</span>
+                    </div>
+                    <div style="margin: 5px 12px;"><strong>TLawrence </strong>Sir, you may want to sit down.<span
+                            id="timeStamp"> 08:23</span></div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>Tyler, I need you to tell me, no beating
+                        around the bush.<span id="timeStamp"> 08:24</span></div>
+                    <div style="margin: 5px 12px;"><strong>TLawrence: </strong>It's not good.<span id="timeStamp">
+                            08:30</span></div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>I'm not going to ask you again.<span
+                            id="timeStamp"> 08:30</span></div>
+                    <div style="margin: 5px 12px;"><strong>TLawrence: </strong>Ok. It's your wife.<span id="timeStamp">
+                            08:36</span></div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>WHAT!!!<span id="timeStamp"> 08:36</span>
+                    </div>
+                    <div style="margin: 5px 12px;"><strong>TLawrence: </strong>We started to notice she was coming over
+                        to inspect your son a lot and we decided to follow her. She met with a FBI agent in a warehouse
+                        about an hour from the labs. I woud highly advise burning any evidence at this point. The feds
+                        will probably show up any day now.<span id="timeStamp"> 08:38</span></div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>Ok, yeah, burn it down.<span
+                            id="timeStamp"> 08:53</span></div>
+                    <br />
+                    <hr />
+                    <h4 style="text-align: center;">Text Conversation Between Samuels and His Wife, Jane</h4>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>Why did you do it?<span id="timeStamp">
+                            08:54</span></div>
+                    <div style="margin: 5px 12px;"><strong>JSamuels: </strong>What???<span id="timeStamp"> 09:17</span>
+                    </div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>Don't play dumb. I know you sabotaged the
+                        mission. How could you do that. What about our son!<span id="timeStamp"> 09:18</span></div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>Answer me!<span id="timeStamp">
+                            09:24</span></div>
+                    <div style="margin: 5px 12px;"><strong>JSamuels: </strong>I had to do it. You need to move on. This
+                        isn't what he wants.<span id="timeStamp"> 09:25</span></div>
+                    <div style="margin: 5px 12px;"><strong>MSamuels: </strong>It's you, because of you it's all over. I
+                        won't forget this.<span id="timeStamp"> 09:26</span></div>
+
+
+
+                    <br />
+                </div>
+
+                <div id="rre_doc" style="display: none;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <br />
+                    <br />
+                    <div
+                        style="margin: 10px 15px; width: 890px; height: 325px; border: none; resize: none; outline: none; font-family: 'Ubuntu', sans-serif; font-size: 17px; text-align: center; overflow-y: auto;">
+                        <div style="font-size: 30px;">Project Resurrection Report</div>
+                        <h2>Background Info</h2>
+                        <p>Project Resurrection was covered by a different project, Project RRE, both founded by a man
+                            named Martin Samuels on March of 1998. His goals were unkown at the time, but it was later
+                            suspected that his secrecy was required as he was attempting to perform unethical
+                            experiments. On June of 2001, RRE lost the little funding it got as it's software was
+                            written in a rush and it was incredibly unstable. Nobody is quite sure what RRE was, as a
+                            copy has never been found. It is speculated to be incredibly dangerous though, which is why
+                            the government shut it down. Samuels was devestated by this loss and he shut down both
+                            programs.</p>
+                        <br />
+                        <h2>Resurrection and RRE</h2>
+                        <p>It's theorized that the reason Martin Samuels created Project Resurrection was because of the
+                            untimely death of his son Sam. Sam's body has never been found even after courts mandated
+                            his exhumation. This my not mean anything as Samuels torched the building he was working in
+                            leaving little to no evidence of what was truley going on in Project Resurrection.</p>
+                    </div>
+                </div>
+
+                <div id="calc_doc" style="display: none; background-color: lightgray; height: 100%;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <br />
+                    <br />
+                    <div id="calc_input">
+                        <div style="margin-bottom: 14px;"></div>
+                        <span id="calc_text"></span>
+                    </div>
+                    <div id="button_holder_1">
+                        <button class="calc_button" onclick="calc_math(event)">7</button>
+                        <button class="calc_button" onclick="calc_math(event)">8</button>
+                        <button class="calc_button" onclick="calc_math(event)">9</button>
+                        <button class="calc_button" onclick="calc_math(event)">4</button>
+                        <button class="calc_button" onclick="calc_math(event)">5</button>
+                        <button class="calc_button" onclick="calc_math(event)">6</button>
+                        <button class="calc_button" onclick="calc_math(event)">1</button>
+                        <button class="calc_button" onclick="calc_math(event)">2</button>
+                        <button class="calc_button" onclick="calc_math(event)">3</button>
+                        <button class="calc_button" onclick="calc_math(event)" style="margin-left: 84px;">0</button>
+                    </div>
+                    <div id="button_holder_2">
+                        <button class="calc_button" onclick="calc_math(event)">+</button>
+                        <button class="calc_button" onclick="calc_math(event)">-</button>
+                        <button class="calc_button" onclick="calc_math(event)">x</button>
+                        <button class="calc_button" onclick="calc_math(event)">/</button>
+                        <button class="calc_button" onclick="calc_math_2()" style="width: 120px;">=</button>
+                        <button class="calc_button" onclick="calc_math_3()" style="width: 120px;">CLEAR</button>
+                    </div>
+                </div>
+
+                <div id="encrypted_doc" style="display: none;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <br />
+                    <p
+                        style="margin: 10px 15px; width: 890px; height: 350px; border: none; resize: none; outline: none; font-family: 'Ubuntu', sans-serif; font-size: 17px;">
+                        Password: <strong>@eU?9U3vuDAeY}%!</strong></p>
+                </div>
+
+                <div id="hx_doc" style="display: none;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <br />
+                    <br />
+                    <p
+                        style="margin: 10px 15px; width: 890px; height: 350px; border: none; resize: none; outline: none; font-family: 'Ubuntu', sans-serif; font-size: 17px;">
+                        This top of the line decryption software is designed to decrypt <strong>.grblgrbrg</strong>
+                        extensions. Right click on them to decrypt.</p>
+                </div>
+
+                <div id="wifi_wifi" style="display: none;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <br />
+                    <p
+                        style="margin: 10px 15px; width: 890px; height: 350px; border: none; resize: none; outline: none; font-family: 'Ubuntu', sans-serif; font-size: 17px;">
+                        Password: <strong>123Wifi456Password</strong></p>
+                </div>
+
+                <div id="email_doc" style="display: none;">
+                    <div class="file_closer" onclick="close_file_program()">&times;</div>
+                    <br />
+                    <div
+                        style="margin: 0px 15px; width: 890px; height: 350px; font-family: 'Shadows Into Light', cursive; font-size: 18px; color: red">
+                        <p style="margin: 0px 15px;">BE CAREFUL</p>
+                        <hr />
+                        <p style="margin: 0px 15px;">From: System.cache["user_log::21"]</p>
+                        <hr />
+                        <p style="margin: 0px 15px;">I need your help! There is something you need to see. Go to this
+                            link to learn the truth: <strong>www.govhash.over.odf/projects/rre</strong></p>
+                    </div>
+                </div>
+
+                <!----------------------------------------------------------->
+                <div id="menu_1" class="context_menu" style="display: none;">
+                    <p onclick="delete_1()">Delete</p>
+                </div>
+
+                <div id="menu_3" class="context_menu" style="display: none;">
+                    <p onclick="crash()">Delete</p>
+                </div>
+
+                <div id="menu_4" class="context_menu" style="display: none;">
+                    <p onclick="crash()">Delete</p>
+                    <p id="decrypt" onclick="decrypt()" style="display: none;">Decrypt</p>
+                </div>
+
+                <div id="menu_6" class="context_menu" style="display: none;">
+                    <p onclick="crash()">Delete</p>
+                    <p id="decrypt_2" onclick="decrypt_2()">Decrypt</p>
+                </div>
+                <!----------------------------------------------------------->
+
+
+            </div>
+        </div>
+
+
+        <!-- Mail -->
+        <div class="para" id="mail_program">
+            <br />
+            <div class="closer" onclick="close_program()">&times;</div>
+            <h1 style="margin-left: 20px;">MAIL</h1>
+            <div id="mail_left">
+                <br />
+                <div class="message" id="message_1" onclick="m1()">
+                    <h4 class="message_text">Can you read this?</h4>
+                    <p class="message_text">If you are reading this email it means that you have successfully started up
+                        your version of Windows RRE. Please confirm your account to use all of the features RRE
+                        provides.</p>
+                </div>
+                <hr />
+            </div>
+            <div id="mail_right">
+                <div id="mail_right_text">
+                    <div id="no mail" style="color: lightgray; margin: 10px;">Select Message To Read It</div>
+                </div>
+                <div id="mail_right_button">
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SMS PROGRAM -->
+        <div class="para" id="sms_program">
+            <br />
+            <div class="closer_1" onclick="close_program()">&times;</div>
+            <div id="sms_holder"><br /></div>
+            <div id="sms_buttons"><button class="sms_b" onclick="txt_1()">Hello?</button></div>
+        </div>
+
+        <div id="downloading" style="display: none;">
+            <h4 style="margin-top: 30px; margin-left: 10px;">Downloading</h4>
+            <img style="float: right; height: 45px; width: 45px; margin-top: -50px; margin-right: 8px;"
+                src="downloading_EIO.gif" />
+        </div>
+
+
+
+        <div id="bug_holder" style="display: none;">
+            <div id=bkh>Bugs Killed: <span id="bug_kill_count">0</span></div>
+            <div class="bug" id="bug_1" style="margin-top: 30px;" onclick="bug_kill()">
+                <img class="bug_pic" id="bp_1" src="bug_EIO.gif" />
+            </div>
+            <div class="bug" id="bug_2" style="margin-top: 30px;" onclick="bug_kill()">
+                <img class="bug_pic" id="bp_2" src="bug_EIO.gif" />
+            </div>
+            <div class="bug" id="bug_3" style="margin-top: 30px;" onclick="bug_kill()">
+                <img class="bug_pic" id="bp_3" src="bug_EIO.gif" />
+            </div>
+            <div class="bug" id="bug_4" style="margin-top: 30px;" onclick="bug_kill()">
+                <img class="bug_pic" id="bp_4" src="bug_EIO.gif" />
+            </div>
+            <div class="bug" id="bug_5" style="margin-top: 30px;" onclick="bug_kill()">
+                <img class="bug_pic" id="bp_5" src="bug_EIO.gif" />
+            </div>
+        </div>
+
+        <!-- Pop-Up Stuff -->
+        <div id="myModal" class="modal">
+            <div class="modal-content" style="max-width: 760px;">
+                <span class="close">&times;</span>
+                <br />
+                <div id="module_text">Welcome to Windows Really Real Edition. The most secure and advanced operating
+                    system on the market. Please confirm that you are using this software to gain full access to this
+                    product.</div>
+                <br />
+            </div>
+        </div>
+        <script type="text/javascript" src="script.js"></script>
+    </div>
+</body>
+
+</html>
